@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 /*
     createContext() crea un "contenitore globale" che potrà condividere dati tra componenti
@@ -15,7 +15,25 @@ function GlobalProvider({ children }) {
 
     // Qui dentro metti: variabili globali, state, funzioni, dati condivisi
 
-    const saluto = 'ciao'
+    const [time, setTime] = useState(new Date())
+    const hour = time.getHours()
+    const minute = time.getMinutes()
+    const second = time.getSeconds()
+
+
+    useEffect(() => {
+
+        const timeInterval = setInterval(() => {
+            setTime(new Date())
+        }, 1000)
+
+        return () => clearInterval(timeInterval)
+
+    }, [])
+
+
+
+
 
     return (
 
@@ -25,7 +43,7 @@ function GlobalProvider({ children }) {
         */
         <GlobalContext.Provider
             value={{
-                saluto
+                hour, minute, second
             }}
         >
             {children}
