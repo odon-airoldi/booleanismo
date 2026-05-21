@@ -1,14 +1,29 @@
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import AppLayout from './layouts/AppLayout'
+import AppHomePage from './pages/AppHomePage'
+import AppContactPage from './pages/AppContactPage'
+import { GlobalProvider } from './context/GlobalContext'
+
 import './App.css'
+
 
 function App() {
 
   return (
     <>
 
+      <GlobalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<AppHomePage />} />
+              <Route path="/contact" element={<AppContactPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </GlobalProvider>
     </>
   )
 }
