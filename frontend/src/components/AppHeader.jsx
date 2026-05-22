@@ -4,23 +4,22 @@ import { useGlobal } from '../context/GlobalContext'
 
 export default function AppHeader() {
 
-    const { saluto } = useGlobal()
+    const { hour, minute, second } = useGlobal()
 
     return (
-        <header className="font-bold">
+        <header className="d-flex">
             <Link to="/">
                 Booleanismo
             </Link>
+            <div className="d-flex text-8xl">
+                <span>{hour}</span><span>{minute}</span><span>{second}</span>
+            </div>
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                 </ul>
             </nav>
-
-            {
-                saluto
-            }
         </header>
     )
 
