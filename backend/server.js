@@ -1,6 +1,9 @@
 // Importo Express (framework per creare server e API)
 const express = require('express')
 
+// Importo Cors
+const cors = require('cors')
+
 // Crea l'app Express
 const app = express()
 
@@ -15,6 +18,9 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
 
 // tutte le rotte dentro projects.js saranno accessibili da /projects
 app.use('/projects', projects)
