@@ -14,6 +14,7 @@ export default function AppHeader() {
             <nav>
                 <ul className="flex">
                     <li><Link to="/" className="flex-auto block p-3">Home</Link></li>
+                    <li><Link to="/projects" className="flex-auto block p-3">Projects</Link></li>
                     <li><Link to="/contact" className="flex-auto block p-3">Contact</Link></li>
                 </ul>
             </nav>
