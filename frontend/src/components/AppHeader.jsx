@@ -7,19 +7,21 @@ export default function AppHeader() {
     const { hour, minute, second } = useGlobal()
 
     return (
-        <header className="d-flex">
-            <Link to="/">
+        <header className="flex">
+            <Link to="/" className="p-3">
                 Booleanismo
             </Link>
-            <div className="d-flex text-8xl">
-                <span>{hour}</span><span>{minute}</span><span>{second}</span>
-            </div>
             <nav>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                <ul className="flex">
+                    <li><Link to="/" className="flex-auto block p-3">Home</Link></li>
+                    <li><Link to="/contact" className="flex-auto block p-3">Contact</Link></li>
                 </ul>
             </nav>
+            <div className="absolute right-0">
+                <div className="d-flex text-8xl">
+                    <span>{hour}</span><span>{minute}</span><span>{second}</span>
+                </div>
+            </div>
         </header>
     )
 
