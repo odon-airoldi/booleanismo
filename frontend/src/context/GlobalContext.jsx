@@ -13,26 +13,38 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
 
 
-    // Qui dentro metti: variabili globali, state, funzioni, dati condivisi
-
+    // Orologio
     const [time, setTime] = useState(new Date())
     const hour = String(time.getHours()).padStart(2, '0')
     const minute = String(time.getMinutes()).padStart(2, '0')
     const second = String(time.getSeconds()).padStart(2, '0')
 
+    const [dataProjects, setDataProjects] = useState([])
 
+    // Chiamata AJAX tramite fetch API, salvo dati
     useEffect(() => {
-
-        const timeInterval = setInterval(() => {
-            setTime(new Date())
-        }, 1000)
-
-        return () => clearInterval(timeInterval)
-
+        fetch('http://localhost:3000/projects/')
+            .then(res => res.json())
+            .then(data => {
+                setDataProjects(data)
+            })
     }, [])
 
 
+    //
+    const apiKey = import.meta.env.VITE_API_KEY_OWM
 
+    const [dataWeather, setDataWeather] = useState({})
+
+    // Chiamata AJAX tramite fetch API openweathermap
+
+    useEffect(() => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lecco&appid=${apiKey}&units=metric`)
+            .then(res => res.json())
+            .then(data => {
+                setDataWeather(data)
+            })
+    }, [apiKey])
 
 
     return (
@@ -43,7 +55,11 @@ function GlobalProvider({ children }) {
         */
         <GlobalContext.Provider
             value={{
-                hour, minute, second
+                hour,
+                minute,
+                second,
+                dataProjects,
+                dataWeather
             }}
         >
             {children}
