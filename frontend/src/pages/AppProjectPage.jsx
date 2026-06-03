@@ -58,7 +58,7 @@ export default function AppProjectsPage() {
                 <button onClick={() => imgNav(1)}>Next</button>
             </div>
         </div>
-        
+
     )
 
 }

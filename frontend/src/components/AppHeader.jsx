@@ -12,7 +12,7 @@ export default function AppHeader() {
     return (
         <header className="flex">
             <Link to="/" className="p-3">
-                Booleanismo
+                Odon Airoldi
             </Link>
             <nav>
                 <ul className="flex items-center">
